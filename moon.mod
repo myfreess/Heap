@@ -1,1 +1,1 @@
-module "pheap"
+module "heap"

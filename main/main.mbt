@@ -1,3 +1,3 @@
 func init {
-  @lib.hello().print()
+  println("hello")
 }
