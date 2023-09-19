@@ -28,9 +28,16 @@ func consolidate[T:Compare](ts:List[PHeap[T]]) -> PHeap[T] {
   }
 }
 
-pub func pop[T:Compare](self:PHeap[T]) -> PHeap[T] {
+pub func pop[T:Compare](self:PHeap[T]) -> Option[PHeap[T]] {
   match self {
-    Empty       => abort("cant remove element from Empty PHeap")
-    Node(_, ts) => consolidate(ts)
+    Empty       => None
+    Node(_, ts) => Some(consolidate(ts))
+  }
+}
+
+pub func min[T:Compare](self:PHeap[T]) -> Option[T] {
+  match self {
+    Empty => None
+    Node(v, _) => Some(v)
   }
 }

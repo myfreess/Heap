@@ -3,7 +3,7 @@ pub struct BHeap[T] {
   mut count:Int
 }
 
-func capacity[T](self:BHeap[T]) -> Int {
+pub func capacity[T](self:BHeap[T]) -> Int {
   // moonbit的array不可动态调整长度
   self.data.length()
 }
