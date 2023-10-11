@@ -1,6 +1,7 @@
 pub struct BHeap[T] {
   mut data:Array[T]
   mut count:Int
+  min_value:T
 }
 
 pub func capacity[T](self:BHeap[T]) -> Int {
@@ -68,7 +69,13 @@ func build_heap[T:Compare](self:BHeap[T]){
 }
 
 pub func BHeap::new[T:Compare](capacity:Int, minValue:T) -> BHeap[T] {
-  { data: Array::make(capacity, minValue), count: 0 }
+  { data: Array::make(capacity, minValue), count: 0, min_value: minValue}
+}
+
+pub func BHeap::from_array[T:Compare](arr:Array[T], minValue:T) -> BHeap[T] {
+  let h = { data: arr, count: arr.length(), min_value: minValue}
+  h.build_heap()
+  return h
 }
 
 pub func max[T:Compare](self:BHeap[T]) -> Option[T] {
@@ -101,14 +108,32 @@ func heap_fix[T:Compare](self:BHeap[T], i:Int) {
   }
 }
 
-pub func insert[T:Compare](self:BHeap[T], x:T) -> Bool {
+func copy_from[T](self:Array[T], src:Array[T]) {
+  // assert self.length() >= src.length()
+  // src不应该是self的alias
+  var i = 0
+  while i < src.length() {
+    self[i] = src[i]
+    i = i + 1
+  }
+}
+
+pub func insert[T:Compare](self:BHeap[T], x:T) {
   if(self.residualVolume() > 0){
     self.data[self.count] = x
     self.count = self.count + 1
     self.heap_fix(self.count - 1)
-    return true
   } else {
-    return false
+    let n = self.capacity() * 2
+    if (n == 0){
+      self.data = Array::make(20, self.min_value)
+      self.insert(x)
+    } else {
+      let arr = Array::make(n, self.min_value)
+      arr.copy_from(self.data)
+      self.data = arr
+      self.insert(x)
+    }
   }
 }
 
