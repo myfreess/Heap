@@ -31,9 +31,11 @@ fn residualVolume[T](self:BHeap[T]) -> Int
 
 fn BHeap::new[T:Compare](capacity:Int, minValue:T) -> BHeap[T]
 
+fn BHeap::from_array[T:Compare](arr:Array[T], minValue:T) -> BHeap[T]
+
 fn max[T:Compare](self:BHeap[T]) -> Option[T]
 
 fn pop[T:Compare](self:BHeap[T]) -> Option[T]
 
-fn insert[T:Compare](self:BHeap[T], x:T) -> Bool
+fn insert[T:Compare](self:BHeap[T], x:T)
 ```

@@ -11,14 +11,13 @@ func test_pheap() {
   println("\(x)")
 }
 
-func test_bheap() {
-  let h = @bheap.BHeap::new(1024, 0)
-  let b = h.insert(4)
-  let b = h.insert(6)
-  let b = h.insert(5)
-  let x = h.pop().unwrap()
-  let y = h.pop().unwrap()
-  println("\(x) \(y)")
+func test_bheap(){
+  let h2 = @bheap.BHeap::from_array([3, 5, 9], 0)
+  h2.insert(5)
+  h2.insert(6)
+  h2.insert(7)
+  let x = h2.pop().unwrap()
+  println("\(x)")
 }
 
 func init {
