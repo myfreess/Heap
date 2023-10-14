@@ -35,10 +35,11 @@ func exchange[T](self:Array[T], x:Int, y:Int) {
   self[y] = tmp
 }
 
-func heapify[T:Compare](self:BHeap[T], i:Int) {
+func heapify[T:Compare](self:BHeap[T], index:Int) {
   // 大根堆
   let n = self.count
   while true {
+    var i = index
     var s = i
     let l = left(i)
     let r = right(i)
@@ -50,6 +51,7 @@ func heapify[T:Compare](self:BHeap[T], i:Int) {
     }
     if s != i {
       self.data.exchange(s,i)
+      i = s
     } else {
       break
     }
