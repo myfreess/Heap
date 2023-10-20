@@ -43,10 +43,10 @@ func heapify[T:Compare](self:BHeap[T], index:Int) {
   while true {
     let l = left(i)
     let r = right(i)
-    if l < n && self.data[l] > self.data[i] {
+    if l < n && self.data[l] > self.data[s] {
       s = l
     }
-    if r < n && self.data[r] > self.data[i] {
+    if r < n && self.data[r] > self.data[s] {
       s = r
     }
     if s != i {
