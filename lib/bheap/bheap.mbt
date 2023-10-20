@@ -38,9 +38,9 @@ func exchange[T](self:Array[T], x:Int, y:Int) {
 func heapify[T:Compare](self:BHeap[T], index:Int) {
   // 大根堆
   let n = self.count
+  var i = index
+  var s = i
   while true {
-    var i = index
-    var s = i
     let l = left(i)
     let r = right(i)
     if l < n && self.data[l] > self.data[i] {
